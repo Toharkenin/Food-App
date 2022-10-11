@@ -3,48 +3,48 @@ import { View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const restaurantsList = [
-  {
-    name: "name of resturant",
-    image_: "http://i.imgur.com/vKRaKDX.png",
-    reviews: 450,
-    price: 100,
-    // categories: [indian, pickap],
-    rating: 4.7,
+  // {
+  //   name: "name of resturant",
+  //   image_: "http://i.imgur.com/vKRaKDX.png",
+  //   reviews: 450,
+  //   price: 100,
+  //   // categories: [indian, pickap],
+  //   rating: 4.7,
 
-  },
-  {
-    name: "name of resturant1",
-    image_: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.timeout.com%2Fnewyork%2Frestaurants%2Fmanhattan-restaurant-guide&psig=AOvVaw3ySRMvJAz_AkhtgFp_KbfU&ust=1664795798272000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLD3rZG2wfoCFQAAAAAdAAAAABAD",
-    reviews: 450,
-    price: 100,
-    // categories: [indian, pickap],
-    rating: 4.7,
+  // },
+  // {
+  //   name: "name of resturant1",
+  //   image_: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.timeout.com%2Fnewyork%2Frestaurants%2Fmanhattan-restaurant-guide&psig=AOvVaw3ySRMvJAz_AkhtgFp_KbfU&ust=1664795798272000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLD3rZG2wfoCFQAAAAAdAAAAABAD",
+  //   reviews: 450,
+  //   price: 100,
+  //   // categories: [indian, pickap],
+  //   rating: 4.7,
 
-  },
-  {
-    name: "name of resturant4",
-    image_: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.timeout.com%2Fnewyork%2Frestaurants%2Fmanhattan-restaurant-guide&psig=AOvVaw3ySRMvJAz_AkhtgFp_KbfU&ust=1664795798272000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLD3rZG2wfoCFQAAAAAdAAAAABAD",
-    reviews: 450,
-    price: 100,
-    // categories: "indian",
-    rating: 4.7,
+  // },
+  // {
+  //   name: "name of resturant4",
+  //   image_: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.timeout.com%2Fnewyork%2Frestaurants%2Fmanhattan-restaurant-guide&psig=AOvVaw3ySRMvJAz_AkhtgFp_KbfU&ust=1664795798272000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLD3rZG2wfoCFQAAAAAdAAAAABAD",
+  //   reviews: 450,
+  //   price: 100,
+  //   // categories: "indian",
+  //   rating: 4.7,
 
-  }
+  // }
 ];
 
 export default function Restaurants(props) {
     return (
       <>
             {props.restaurantsData.map((item, index) => (
-                <TouchableOpacity 
-                activeOpacity={0.9} 
+                <View 
+                  activeOpacity={0.9} 
                   key={index} 
                   style={{marginTop: 8, backgroundColor: '#fff', marginBottom: 10}}>
                     <RestaurantImage image_={item.image}/>
                     <RestaurantInfo 
                       name={item.name} 
                       rating={item.rating}/>
-                </TouchableOpacity>
+                </View>
             ))} 
       </>
     );
@@ -53,7 +53,7 @@ export default function Restaurants(props) {
   const RestaurantImage = (props) => {
     return(
     <>
-      <Image style={styles.images} source={{uri: props._image}}/>
+      <Image style={styles.images} source={{uri: props._image}} />
       <TouchableOpacity style={{position: 'absolute', right: 10, top: 10}}>
         <MaterialCommunityIcons name="heart-outline" size={25} color="#fff" />
       </TouchableOpacity>
@@ -74,10 +74,10 @@ export default function Restaurants(props) {
     )};
 
   const styles = StyleSheet.create({
-    // imageContainer: {
-    //   // position: 'relative',
-    //   // margin: 10,
-    // },
+    imageContainer: {
+      // position: 'relative',
+      margin: 10,
+    },
     images: {
       width: '100%',
       heigth: 180,

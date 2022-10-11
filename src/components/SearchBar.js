@@ -4,10 +4,15 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
-export default function SearchBar() {
+export default function SearchBar({cityHandler}) {
     return (
         <View style={{marginTop:15, flexDirection:"row"}}>
             <GooglePlacesAutocomplete 
+                query={{key: 'AIzaSyA3n4d1UBfWuinDKVlgMfKBOubRC2Ig1pw'}}
+                onPress={(data, detail = null) => {
+                    const city = data.description.split(",")[0];
+                    cityHandler(city);
+                }}
                 placeholder="Search"
                 styles={{
                     textInput: {
@@ -31,7 +36,7 @@ export default function SearchBar() {
                 )}
                 renderRightButton={() => (
                     <TouchableOpacity>
-                        <Ionicons name="search" size={24} style={{color: '#494848', right: 20}}/>
+                        <Ionicons name="search" size={24} style={{color: '#494848', right: 20, marginLeft: 20}}/>
                     </TouchableOpacity>
                 )}
                 />
