@@ -8,7 +8,7 @@ import NavigationFooter from '../components/NavigationFooter';
 
 const YelpApiKey = "aztjVJe_wteDgzzmQ1y03yXp1s62zME2eMA05u3kq4KVzoo76IgPoD2ZaEx0AlEfqf4nqvFV20NjGIn6_FHKggSH9PBhAG09yknVIsjwfAK2r7TpNe8va8twQ1I4Y3Yx";
 
-export default function Home() {
+export default function Home({ navigation }) {
 
   const [restaurantsData, setRestaurantsData] = useState(restaurantsList);
   const [city, setCity] = useState("Miami");
@@ -47,7 +47,7 @@ export default function Home() {
       <ScrollView>
         <Categories />
         <Restaurants
-          restaurantsData={restaurantsData} />
+          restaurantsData={restaurantsData} navigation={navigation}/>
       </ScrollView>
       <NavigationFooter />
     </SafeAreaView>

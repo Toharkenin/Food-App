@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: '900',
-    fontSize: 13,
+    fontSize: 14,
   }
 });
