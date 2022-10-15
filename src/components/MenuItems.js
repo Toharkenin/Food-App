@@ -2,18 +2,19 @@ import React from 'react';
 import { Text, Image, View, StyleSheet, ScrollView} from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { Divider } from 'react-native-elements';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const items = [
     {
         image: "https://media.timeout.com/images/105921028/750/422/image.jpg",
-        name: "The best dish",
+        name: "1111111",
         description: "Lorem Ipsum is    Lorem Ipsum, Lorem Ipsum",
         price: "$20",
     },
     {
         image: "https://media.timeout.com/images/105921028/750/422/image.jpg",
-        name: "The best dish",
+        name: "222222222",
         description: "Lorem Ipsum isLorem Ipsum, Lorem Ipsum locations  the most popular",
         price: "$20",
     },
@@ -25,47 +26,75 @@ const items = [
     },
     {
         image: "https://media.timeout.com/images/105921028/750/422/image.jpg",
-        name: "The best dish",
+        name: "33333333",
         description: "Lorem Ipsum isLorem Ipsum, Lorem Ipsum locations  the most popular",
         price: "$20",
     },
     {
         image: "https://media.timeout.com/images/105921028/750/422/image.jpg",
-        name: "The best dish",
+        name: "44444444",
         description: "Lorem Ipsum isLorem Ipsum, Lorem Ipsum locations  the most popular",
         price: "$20",
     },
     {
         image: "https://media.timeout.com/images/105921028/750/422/image.jpg",
-        name: "The best dish",
+        name: "2324332",
         description: "Lorem Ipsum isLorem Ipsum, Lorem Ipsum locations  the most popular",
         price: "$20",
     },
-]
+    {
+        image: "https://media.timeout.com/images/105921028/750/422/image.jpg",
+        name: "The best dish ever",
+        description: "Lorem Ipsum isLorem Ipsum, Lorem Ipsum locations  the most popular",
+        price: "$20",
+    },
+    {
+        image: "https://media.timeout.com/images/105921028/750/422/image.jpg",
+        name: "The worst dish",
+        description: "Lorem Ipsum isLorem Ipsum, Lorem Ipsum locations  the most popular",
+        price: "$20",
+    },
+];
 
-export default function RestaurantAbout(props) {
+export default function MenuItems({restaurantName}) {
+
+    const dispatch = useDispatch();
+    const selectItem = (item, CheckBoxValue) => dispatch({
+        type: 'add_to_cart',
+        payload: {...item, 
+            restaurantName: restaurantName,
+            CheckBoxValue: CheckBoxValue},
+    });
+
+    const cartItems = useSelector((state) => state.cartReducer.selectedItems.items);
+    const isItemInCart = (menuItem, cartItems) => 
+        Boolean(cartItems.find((item) => (item.name === menuItem.name)));
+
     return (
-        <ScrollView showsHorizontalScrollIndicator={false}>
-            {items.map((item, index) => (
+            <ScrollView showsVerticalScrollIndicator={false}>
+            {items.map((menuItem, index) => (
                 <View 
-                  key={index}
-                  style={{marginTop: 10, marginHorizontal: 10}}>
+                  key={index}>
                     <View style={styles.container}>
                         <BouncyCheckbox 
                             iconStyle={{borderColor: "#D3D3D3"}}  
                             fillColor="#0081ff" 
-                            innerIconStyle={{ borderWidth: 2 }}/>
+                            innerIconStyle={{ borderWidth: 2 }}
+                            isChecked={isItemInCart(menuItem, cartItems)}
+                            onPress={(CheckBoxValue) => 
+                                selectItem(menuItem, CheckBoxValue)}
+                                />
                         <View style={styles.textContainer}>
-                            <Text style={styles.name}>{item.name}</Text>
-                            <Text style={styles.description}>{item.description}</Text>
-                            <Text style={styles.price}>{item.price}</Text>
+                            <Text style={styles.name}>{menuItem.name}</Text>
+                            <Text style={styles.description}>{menuItem.description}</Text>
+                            <Text style={styles.price}>{menuItem.price}</Text>
                         </View> 
-                        <Image source={{uri: item.image}} style={styles.img}/>      
+                        <Image source={{uri: menuItem.image}} style={styles.img}/>      
                     </View>
                     <Divider width={0.8} orientation="vertical" style={{marginHorizontal: 15}}></Divider>
                 </View>
-            ))} 
-      </ScrollView>
+            ))}
+            </ScrollView>   
     );
   };
 
@@ -73,19 +102,17 @@ export default function RestaurantAbout(props) {
     container: {
         flexDirection: 'row', 
         justifyContent: "space-between",
-        marginVertical: 20,
+        margin: 20,
         alignItems: "center",
     },
     img: {
         height: 90,
         width: 90,
         borderRadius: 7,
-        marginRight: 15,
     },
     textContainer: {
-        width: 250,
-        // justifyContent: 'space-evenly',
-        marginLeft: 15,
+        width: 220,
+        justifyContent: 'space-evenly',
     },
     name: {
         fontSize: 20,
@@ -97,6 +124,5 @@ export default function RestaurantAbout(props) {
     },
     price: {
         fontWeight: '400',
-        marginTop: 5,
     },
   });

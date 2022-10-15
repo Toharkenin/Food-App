@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import RestaurantsDetails from '../screens/RestaurantsDetails';
+
 
 export const restaurantsList = [
 ];
